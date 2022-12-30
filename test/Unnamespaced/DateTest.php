@@ -308,6 +308,22 @@ class DateTest extends TestCase
             'UTC',
             Horde_Date::getTimezoneAlias('UTC')
         );
+        $this->assertEquals(
+            'Etc/GMT-8',
+            Horde_Date::getTimezoneAlias('GMT-0800')
+        );
+        $this->assertEquals(
+            'Etc/GMT+1',
+            Horde_Date::getTimezoneAlias('GMT+0100')
+        );
+        $this->assertEquals(
+            'Etc/GMT+10',
+            Horde_Date::getTimezoneAlias('GMT+1000')
+        );
+        $this->assertEquals(
+            'GMT+1030',
+            Horde_Date::getTimezoneAlias('GMT+1030')
+        );
     }
 
     public function testSetTimezone()
