@@ -824,6 +824,13 @@ class Horde_Date
             $timezone = reset(self::$_timezoneAbbreviations[$lower]);
             $timezone = $timezone['timezone_id'];
         }
+
+        // Map timezones of the form `GMT-0800`
+        // (which sometimes appear in events imported from airplane flights).
+        // to corresponding Olson names.
+        if (preg_match('/^GMT([+-])(\d\d)00$/', $timezone, $matches))
+            $timezone = 'Etc/GMT' . $matches[1] . ltrim($matches[2], '0');
+
         return $timezone;
     }
 
